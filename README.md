@@ -19,9 +19,11 @@ MAINTAINER Scott Rutherford <scott@usefulblocks.com>
 CMD supervisord -c /etc/supervisor/supervisord.conf && bash
 ```
 
+If you mount a local directory for merit in the container then you won't lose your wallet.......
 ```
 docker build -t merit-miner .
-docker run -i -t -p 22:22 merit-miner:latest
+docker run -i -t -p 22:22 -v /Users/scott/Workspace/usefulblocks/data:/root/.merit merit-miner:latest
+tail -f ./data/debug.log
 ```
 
 # Connecting to the Docker container
@@ -36,4 +38,9 @@ f6f4c5c5c28f        merit-miner:latest   "/bin/sh -c 'supervi…"   4 minutes ag
 
 ```
 docker exec -it f6f bash
+```
+
+# Helpful commands
+```
+watch -n5 merit-cli getblockchaininfo
 ```
