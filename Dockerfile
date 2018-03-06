@@ -8,8 +8,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # Update  and install
 RUN apt-get update && apt-get install -y \
-  build-essential libtool autotools-dev automake pkg-config \
-  libssl-dev libevent-dev bsdmainutils python3 \
+  build-essential libtool autotools-dev automake pkg-config git \
+  libssl-dev libevent-dev bsdmainutils python3 openssh-client \
   apt-utils autoconf gcc g++ curl libboost-all-dev supervisor
 
 # Setup supervisor
@@ -26,10 +26,17 @@ RUN mkdir -p /src/berkeley-db && \
   ../dist/configure --prefix=/usr/local --enable-cxx --disable-shared --with-pic && \
   make && make install
 
+# Pick a distribution
+# Master
 RUN mkdir -p /src/merit && \
   cd /src/ && \
-  curl -sL https://github.com/meritlabs/merit/archive/m0.4.0.tar.gz | \
-  tar xvz --strip-components=1 -C merit
+  git clone https://github.com/meritlabs/merit.git
+
+# Latest (or any previous, going backwards is probably not the best idea...)
+# RUN mkdir -p /src/merit && \
+#   cd /src/ && \
+#   curl -sL https://github.com/meritlabs/merit/archive/m0.4.0.tar.gz | \
+#   tar xvz --strip-components=1 -C merit
 
 # Compile Merit
 RUN cd /src/merit && \

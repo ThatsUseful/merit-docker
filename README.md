@@ -21,7 +21,7 @@ CMD supervisord -c /etc/supervisor/supervisord.conf && bash
 
 ```
 docker build -t merit-miner .
-docker run -i -t merit-miner:latest
+docker run -i -t -p 22:22 merit-miner:latest
 ```
 
 # Connecting to the Docker container
