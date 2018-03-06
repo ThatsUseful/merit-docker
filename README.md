@@ -19,6 +19,11 @@ MAINTAINER Scott Rutherford <scott@usefulblocks.com>
 CMD supervisord -c /etc/supervisor/supervisord.conf && bash
 ```
 
+```
+docker build -t merit-miner .
+docker run -i -t merit-miner:latest
+```
+
 # Connecting to the Docker container
 ```
 docker ps
