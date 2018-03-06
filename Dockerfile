@@ -33,7 +33,7 @@ RUN mkdir -p /src/merit && \
 
 # Compile Merit
 RUN cd /src/merit && \
-  ./autogen.sh && ./configure --enable-debug && \
+  ./autogen.sh && ./configure && \
   cd src/ && make obj/build.h && \
   cd ../ && make && make install
 
